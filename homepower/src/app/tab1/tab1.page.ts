@@ -13,4 +13,8 @@ export class Tab1Page {
     console.log("hello world");
   }
 
+
+  turnPower(state){
+    console.log(state);
+  }
 }
