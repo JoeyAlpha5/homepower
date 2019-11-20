@@ -1,5 +1,7 @@
 {
   "name": "homepower",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

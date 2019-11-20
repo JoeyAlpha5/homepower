@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { SMS } from '@ionic-native/sms/ngx';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -7,14 +7,10 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
-
-  hello(){
-    console.log("hello world");
-  }
-
+  constructor(private sms: SMS) {}
 
   turnPower(state){
-    console.log(state);
+    // Send a text message using default options
+    this.sms.send('+27630547090', 'SetRDo');
   }
 }
