@@ -4,15 +4,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
-import { SMS } from '@ionic-native/sms/ngx';
+import { RequestsService } from '../services/requests.service';
+import { HttpClientModule } from '@angular/common/http';
+// import { HTTP } from '@ionic-native/http/ngx';
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forChild([{ path: '', component: Tab1Page }])
   ],providers: [
-    SMS
+    RequestsService
   ],
   declarations: [Tab1Page]
 })

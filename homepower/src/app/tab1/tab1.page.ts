@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { SMS } from '@ionic-native/sms/ngx';
+// import { HTTP } from '@ionic-native/http/ngx';
+import { RequestsService } from '../services/requests.service';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -7,10 +9,20 @@ import { SMS } from '@ionic-native/sms/ngx';
 })
 export class Tab1Page {
 
-  constructor(private sms: SMS) {}
+  constructor(private statusBar: StatusBar,private requests: RequestsService) {
+    this.statusBar.overlaysWebView(false);
+    this.statusBar.styleDefault();
+  }
 
   turnPower(state){
     // Send a text message using default options
-    this.sms.send('+27630547090', 'SetRDo');
+   let req = this.requests.Power(state);
+   req.subscribe();
+    
+  }
+
+  ionViewDidEnter(){
+    this.statusBar.overlaysWebView(false);
+    this.statusBar.styleDefault();
   }
 }
