@@ -1,23 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content id="logincontent">
-  
+
+
+
+<ion-content>
 
 <div id="loginCont">
-  
+  <img id="logoImg"  src="https://res.cloudinary.com/uploaded/image/upload/v1574337860/kilejvbr1exfc0ixqqy2.png">
   <ion-item id="usn">
     <ion-label>Username</ion-label>
-    <ion-input></ion-input>
+    <ion-input id="userInputdInput" placeholder="Enter username"></ion-input>
   </ion-item>
   <ion-item id="pass">
     <ion-label>Password</ion-label>
-    <ion-input></ion-input>
+    <ion-input id="passwordInput" type="password" placeholder="Enter password"></ion-input>
   </ion-item>
 
-  <ion-button id="logbtn" expand="block"  >Outline + Block</ion-button>
+  <ion-button id="logbtn" expand="block" (click)="signIn()" >Login</ion-button>
 
 </div>
 
