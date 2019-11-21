@@ -12,6 +12,7 @@ export class Tab1Page {
   constructor(private statusBar: StatusBar,private requests: RequestsService) {
     this.statusBar.overlaysWebView(false);
     this.statusBar.styleDefault();
+    this.statusBar.backgroundColorByHexString('#ffffff');
   }
 
   turnPower(state){
@@ -24,5 +25,6 @@ export class Tab1Page {
   ionViewDidEnter(){
     this.statusBar.overlaysWebView(false);
     this.statusBar.styleDefault();
+    this.statusBar.backgroundColorByHexString('#ffffff');
   }
 }
