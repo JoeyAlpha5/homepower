@@ -16,6 +16,7 @@ export class Tab1Page {
 
   username:any;
   result: Observable<any>;
+  showBtn: boolean;
   constructor(private platform: Platform,private statusBar: StatusBar,private route: Router,private requests: RequestsService, private storage: Storage,private location: Location) {
     this.statusBar.overlaysWebView(false);
     this.statusBar.styleDefault();
@@ -42,15 +43,30 @@ export class Tab1Page {
       this.username = x;
       this.result = this.requests.getResidence(x);
       this.result.subscribe();
+      this.showBtn = false;
+
     }).catch(x=>{
       this.route.navigate(['']);
     })
   }
 
 
+  back(){
+    this.storage.get("username").then(x=>{
+      console.log(x);
+      this.username = x;
+      this.result = this.requests.getResidence(x);
+      this.result.subscribe();
+      this.showBtn = false;
+    }).catch(x=>{
+      this.route.navigate(['']);
+    })
+  }
+
   getUnits(residence_id){
     console.log(residence_id);
     this.result = this.requests.getUnit(residence_id);
     this.result.subscribe();
+    this.showBtn = true;
   }
 }
