@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 // import { HTTP } from '@ionic-native/http/ngx';
+import { Observable } from 'rxjs';
+import { Location } from '@angular/common';
+import { Storage } from '@ionic/storage';
 import { RequestsService } from '../services/requests.service';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Platform } from '@ionic/angular';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -9,10 +14,16 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class Tab1Page {
 
-  constructor(private statusBar: StatusBar,private requests: RequestsService) {
+  username:any;
+  result: Observable<any>;
+  constructor(private platform: Platform,private statusBar: StatusBar,private route: Router,private requests: RequestsService, private storage: Storage,private location: Location) {
     this.statusBar.overlaysWebView(false);
     this.statusBar.styleDefault();
     this.statusBar.backgroundColorByHexString('#ffffff');
+
+    this.platform.backButton.subscribe(() => {
+      this.ionViewDidEnter();
+    });
   }
 
   turnPower(state){
@@ -26,5 +37,20 @@ export class Tab1Page {
     this.statusBar.overlaysWebView(false);
     this.statusBar.styleDefault();
     this.statusBar.backgroundColorByHexString('#ffffff');
+    this.storage.get("username").then(x=>{
+      console.log(x);
+      this.username = x;
+      this.result = this.requests.getResidence(x);
+      this.result.subscribe();
+    }).catch(x=>{
+      this.route.navigate(['']);
+    })
+  }
+
+
+  getUnits(residence_id){
+    console.log(residence_id);
+    this.result = this.requests.getUnit(residence_id);
+    this.result.subscribe();
   }
 }

@@ -8,7 +8,29 @@ Home
 
 <ion-content id="content">
 
-  <ion-button (click)="turnPower('ClearRD0')" id="onBtn"  expand="block">Turn on power</ion-button>
-  <ion-button (click)="turnPower('SetRD0')" id="offBtn" expand="block" fill="outline">Turn off power</ion-button>
+  <p id="main">Welcome {{ username }}</p>
+  <p id="prompt">Select a residence from below</p>
+
+<ion-list>
+  <ion-item-sliding id="residences"  *ngFor='let item of ( result | async); let i = index'>
+    <ion-item (click)="getUnits(item.id)" button *ngIf="!item.unum">
+      <p>{{ item.name }} </p>
+    </ion-item>
+
+
+
+    <ion-item-options side="start" *ngIf="item.unum && item.cell == '+27626412910' ">
+        <ion-item-option (click)="favorite(item)" (click)="turnPower('SetRD0')">On</ion-item-option>
+        <ion-item-option color="danger" (click)="turnPower('ClearRD0')">Off</ion-item-option>
+      </ion-item-options>
+    <ion-item *ngIf="item.unum">
+      <p>{{ item.unum }} <br> <span>{{ item.cell }}</span></p>
+    </ion-item>
+  </ion-item-sliding>
+</ion-list>
+
+  
+  <!--<ion-button (click)="turnPower('ClearRD0')" id="onBtn"  expand="block">Turn on power</ion-button>
+  <ion-button (click)="turnPower('SetRD0')" id="offBtn" expand="block" fill="outline">Turn off power</ion-button>-->
 
 </ion-content>

@@ -28,4 +28,25 @@ export class RequestsService {
       })
     );
   }
+
+  getResidence(username){
+    let url = "https://homepowerapp.herokuapp.com/send/send";
+    return this.http.get(url, {params: {username: username,type:"getResidence"}}).pipe(
+      map(results => {
+        console.log("Results",results);
+        return results["data"];
+      })
+    );
+  }
+
+
+  getUnit(unit_id){
+    let url = "https://homepowerapp.herokuapp.com/send/send";
+    return this.http.get(url, {params: {id: unit_id,type:"getUnit"}}).pipe(
+      map(results => {
+        console.log("Results",results);
+        return results["unitdata"];
+      })
+    );
+  }
 }
